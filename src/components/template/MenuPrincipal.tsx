@@ -1,4 +1,4 @@
-import { IconMenu, IconX } from "@tabler/icons-react";
+import { IconArrowsLeftRight, IconLetterCase, IconMathGreater, IconMenu, IconNumbers, IconRefreshAlert, IconSection, IconUsers, IconX } from "@tabler/icons-react";
 import { MenuItem } from "../../data/models/MenuItem";
 import { MenuSecao } from "../../data/models/MenuSecao";
 import Logo from "./Logo";
@@ -11,7 +11,16 @@ export default function MenuPrincipal() {
         {
             titulo: "Essenciais",
             aberta: true,
-            itens: [],
+            itens: [
+                {titulo: "Contador", url: "/essenciais/contador", tag: "useState", icone: <IconNumbers/>},
+                {titulo: "Votação", url: "/essenciais/votacao", tag: "useState", icone: <IconUsers/>},
+                {titulo: "Consulta à API", url: "/essenciais/consultaAPI", tag: "useEffect", icone: <IconArrowsLeftRight/>},
+                {titulo: "Maior", url: "/essenciais/maior", tag: "useEffect", icone: <IconMathGreater/>},
+                {titulo: "Contagem de caracteres", url: "/essenciais/contagemCaracteresEffect", tag: "useEffect", icone: <IconLetterCase/>},
+                {titulo: "State VS Referencia", url: "/essenciais/stateVsRef", tag: "useRef", icone: <IconRefreshAlert/>},
+                {titulo: "Referenciando elemento", url: "/essenciais/refElemento", tag: "useRef", icone: <IconSection/>},
+                {titulo: "Contagem de caracteres", url: "/essenciais/contagemCaracteresRef", tag: "useRef", icone: <IconLetterCase/>},
+            ],
         },
     ];
     const mini = false;
