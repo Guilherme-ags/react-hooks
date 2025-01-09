@@ -1,11 +1,10 @@
-import { IconAppWindow, IconArrowsLeftRight, IconDimensions, IconLetterCase, IconLock, IconMathGreater, IconMenu, IconNumbers, IconRefreshAlert, IconSection, IconUsers, IconX } from "@tabler/icons-react";
+import { IconAppWindow, IconArrowsLeftRight, IconDimensions, IconLetterCase, IconLock, IconMathGreater, IconMenu, IconNumbers, IconRefreshAlert, IconSection, IconShoppingCart, IconUsers, IconX } from "@tabler/icons-react";
 import { MenuItem } from "../../data/models/MenuItem";
 import { MenuSecao } from "../../data/models/MenuSecao";
 import Logo from "./Logo";
 import MenuPrincipalItem from "./MenuPrincipalItem";
 import MenuPrincipalSecao from "./MenuPrincipalSecao";
 import Flex from "./Flex";
-import useToggle from "@/data/hooks/useToggle";
 import useTamanhoJanela from "@/data/hooks/useTamanhoJanela";
 import { useEffect } from "react";
 import useBoolean from "@/data/hooks/useBoolean";
@@ -33,6 +32,13 @@ export default function MenuPrincipal() {
                 {titulo: "Modal", url: "/personalizados/modal", tag: "personalizados", icone: <IconAppWindow/>},
                 {titulo: "Tamanho Janela", url: "/personalizados/tamanhoJanela", tag: "personalizados", icone: <IconDimensions/>},
                 {titulo: "Validando Senha", url: "/personalizados/senha", tag: "personalizados", icone: <IconLock/>},
+            ]
+        },
+        {
+            titulo: "Contexto",
+            aberta: true,
+            itens: [
+                {titulo: "Loja", url: "/contexto/loja", tag: "useContext", icone: <IconShoppingCart/>},
             ]
         },
     ];
