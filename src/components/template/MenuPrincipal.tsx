@@ -1,16 +1,20 @@
-import { IconArrowsLeftRight, IconLetterCase, IconMathGreater, IconMenu, IconNumbers, IconRefreshAlert, IconSection, IconUsers, IconX } from "@tabler/icons-react";
+import { IconAppWindow, IconArrowsLeftRight, IconDimensions, IconLetterCase, IconLock, IconMathGreater, IconMenu, IconNumbers, IconRefreshAlert, IconSection, IconUsers, IconX } from "@tabler/icons-react";
 import { MenuItem } from "../../data/models/MenuItem";
 import { MenuSecao } from "../../data/models/MenuSecao";
 import Logo from "./Logo";
 import MenuPrincipalItem from "./MenuPrincipalItem";
 import MenuPrincipalSecao from "./MenuPrincipalSecao";
 import Flex from "./Flex";
+import useToggle from "@/data/hooks/useToggle";
+import useTamanhoJanela from "@/data/hooks/useTamanhoJanela";
+import { useEffect } from "react";
+import useBoolean from "@/data/hooks/useBoolean";
 
 export default function MenuPrincipal() {
     const secoes = [
         {
             titulo: "Essenciais",
-            aberta: true,
+            aberta: false,
             itens: [
                 {titulo: "Contador", url: "/essenciais/contador", tag: "useState", icone: <IconNumbers/>},
                 {titulo: "Votação", url: "/essenciais/votacao", tag: "useState", icone: <IconUsers/>},
@@ -22,8 +26,26 @@ export default function MenuPrincipal() {
                 {titulo: "Contagem de caracteres", url: "/essenciais/contagemCaracteresRef", tag: "useRef", icone: <IconLetterCase/>},
             ],
         },
+        {
+            titulo: "Personalizados",
+            aberta: true,
+            itens: [
+                {titulo: "Modal", url: "/personalizados/modal", tag: "personalizados", icone: <IconAppWindow/>},
+                {titulo: "Tamanho Janela", url: "/personalizados/tamanhoJanela", tag: "personalizados", icone: <IconDimensions/>},
+                {titulo: "Validando Senha", url: "/personalizados/senha", tag: "personalizados", icone: <IconLock/>},
+            ]
+        },
     ];
-    const mini = false;
+    
+    const [mini, toggleMini, miniTrue] = useBoolean(false);
+    let tamanho = useTamanhoJanela();
+
+    useEffect(() => {
+        if(tamanho === "md" || tamanho === "sm"){
+            miniTrue();
+        }
+    }, [tamanho])
+
     function renderizarSecoes() {
         return secoes.map((secao: MenuSecao) => (
             <MenuPrincipalSecao key={secao.titulo} titulo={secao.titulo} mini={mini} aberta={secao.aberta}>
@@ -57,6 +79,9 @@ export default function MenuPrincipal() {
         >
             <Flex center className="m-7">
                 {!mini && <Logo />}
+                <div className="cursor-pointer" onClick={toggleMini}>
+                    {mini ? <IconMenu/> : <IconX/>}
+                </div>
             </Flex>
             <nav className="flex flex-col gap-4 m-7">{renderizarSecoes()}</nav>
         </aside>
